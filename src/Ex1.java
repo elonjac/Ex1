@@ -26,11 +26,28 @@ public class Ex1 {
         if (indexb == -1 || indexb == num.length() - 1 || indexb == 0) {
             return ans;
         }
-        String number = num.substring(0, indexb);
-        String base = num.substring(indexb + 1);
+        int number = Integer.parseInt( num.substring(0, indexb));
+        char baseChar = num.substring(indexb + 1).charAt(0);
+        int baseInt;
+        if (baseChar >= '2' && baseChar <= '9'){
+            baseInt = baseChar - 48;
+        }
 
-
-        return ans;
+        else if(baseChar >= 'A' && baseChar <= 'G') {
+            baseInt = baseChar - 55;
+        }
+        else {
+            return -1;
+        }
+        String temp = "";
+        while( number >= baseInt){
+            int x = number/baseInt; // 67
+            int remainder = number % baseInt;
+            temp = remainder + temp;
+            number = x;
+        }
+        temp = number + temp;
+        return Integer.parseInt(temp);
     }
     /**
      * This static function checks if the given String (g) is in a valid "number" format.
@@ -68,11 +85,9 @@ public class Ex1 {
      * @return true iff the two numbers have the same values.
      */
     public static boolean equals(String n1, String n2) {
-        boolean ans = true;
         // add your code here
-
+        return n1.equals(n2);
         ////////////////////
-        return ans;
     }
 
     /**
