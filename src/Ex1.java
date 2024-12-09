@@ -32,21 +32,19 @@ public class Ex1 {
         }
         String numberpart = parts[0];
         String basepart = parts[1];
-        int s = numberpart.length();
         char[] charbase = basepart.toCharArray();
         char[] eachnumber = numberpart.toCharArray();
         int number;
-        String temp = "";
-        for (int i = 0; i < s; i++) {
+        String numstr = "";
+        for (int i = 0; i < numberpart.length(); i++) {
             if (eachnumber[i] >= '0' && eachnumber[i] <= '9') {
                 if (eachnumber[i] < charbase[0]) {
-                    number = eachnumber[i] - '0';
-                    temp = temp + number;
+                    number   = eachnumber[i] - '0';
+                    numstr = numstr + number;
                 } else return ans;
             } else if (eachnumber[i] >= 'A' && eachnumber[i] <= 'G') {
                 if (eachnumber[i] < charbase[0]) {
-                    number = eachnumber[i] - 'A' + 10;
-                    temp = temp + number;
+                    numstr = numstr + eachnumber[i];
                 } else return ans;
             }
         }
@@ -64,16 +62,7 @@ public class Ex1 {
         } else {
             return ans;
         }
-        int intnumber = Integer.parseInt(temp);
-        String answer = "";
-        while (intnumber >= base) {
-            int x = intnumber / base; // 67
-            int remainder = intnumber % base;
-            answer = remainder + answer;
-            intnumber = x;
-        }
-        answer = intnumber + answer;
-        return Integer.parseInt(answer);
+        return Integer.parseInt(numstr,base);
 
 
 
@@ -86,14 +75,48 @@ public class Ex1 {
     public static boolean isNumber(String a) {
         boolean ans = true;
         // add your code here
+        if (!a.contains("b")){
+            char[] charnum = a.toCharArray();
+            for (int i = 0; i < charnum.length; i++) {
+                if (charnum[i] >= '0' && charnum[i] <= '9') {
+                    return ans;
+                }
+                else return false;
+            }
+            return ans;
+        }
         int indexb = a.lastIndexOf('b');
+        if ( indexb == a.length() - 1 || indexb == 0) {
+            ans = false;
+            return ans;
+        }
         String numberpart = a.substring(0, indexb);
-        char basechar = Character.toUpperCase(a.charAt(indexb + 1));
+        String basepart = a.substring(indexb+1);
+        char basechar = basepart.charAt(0);
         char[] eachnumber = numberpart.toCharArray();
         for (int i = 0; i < eachnumber.length; i++) {
-            if (eachnumber[i] >= '0' && eachnumber[i] <= '9' && eachnumber[i] <= basechar) {
-                ans = true;
-            } else ans = false;
+            if (eachnumber[i] >= '0' && eachnumber[i] <= '9') {
+                if (eachnumber[i] < basechar) {
+                    ans = true;
+                }
+                else {
+                    ans = false;
+                    return ans;
+                }
+            }
+            else if (eachnumber[i] >= 'A' && eachnumber[i] <= 'G') {
+                if (eachnumber[i] < basechar) {
+                    ans = true;
+                }
+                else {
+                    ans = false;
+                    return ans;
+                }
+            }
+            else {
+                ans = false;
+                return ans;
+            }
         }
         ////////////////////
         return ans;
@@ -111,18 +134,25 @@ public class Ex1 {
     public static String int2Number(int num, int base) {
         // add your code here
         String ans = "";
-        if(num > 0 && base >=2 && base <= 16) {
-            while (num >= base) {
-                int x = num / base;
-                int remainder = num % base;
-                ans = remainder + ans;
-                num = x;
-            }
-            ans = num + ans;
+        if(num< 0 || base < 2 || base > 16) {
+            return ans;
         }
+        if(num == 0){
+            return "0";
+        }
+        StringBuilder result = new StringBuilder();
+        String digits = "0123456789ABCDEF";
 
-            ////////////////////
-        return ans;
+        while (num > 0) {
+            int remainder = num % base;
+            result.append(digits.charAt(remainder));
+            num /= base;
+        }
+         result.reverse().toString();
+        String fullnumber = result + "b" + base;
+        return fullnumber;
+
+
     }
 
     /**
