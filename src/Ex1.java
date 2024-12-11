@@ -181,10 +181,18 @@ public class Ex1 {
      *
      */
     public static int maxIndex(String[] arr) {
-        int ans = 0;
+        int ans = -1;
         // add your code here
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < arr.length; i++) {
+            int value = number2Int(arr[i]);
+            if (value > max && value != -1) {
+                max = value;
+                ans = i;
+            }
+        }
 
-        ////////////////////
+        //////////////////
         return ans;
     }
 }
