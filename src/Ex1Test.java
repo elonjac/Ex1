@@ -84,4 +84,40 @@ public class Ex1Test {
     }
 
     // Add additional test functions - test as much as you can.
+    @Test
+    void equalsTest() {
+        assertTrue(Ex1.equals("10b2", "2bA"));
+        assertTrue(Ex1.equals("123b4","1000b3"));
+        assertTrue(Ex1.equals("110b4","18bC"));
+        assertTrue(Ex1.equals("1A4bG","1D0bF"));
+
+        assertFalse(Ex1.equals("10b2", "10b3"));
+        assertFalse(Ex1.equals("","123b5"));
+        assertFalse(Ex1.equals(null,"123b5"));
+        assertFalse(Ex1.equals("123b5","123B5"));
+        assertFalse(Ex1.equals("123b5","12 3B5"));
+    }
+    @Test
+    void isNumberTest() {
+        assertTrue(Ex1.isNumber("1011bA"));
+        assertTrue(Ex1.isNumber("10A1bB"));
+        assertTrue(Ex1.isNumber("1E0AbF"));
+
+        assertFalse(Ex1.isNumber("1B CbD"));
+        assertFalse(Ex1.isNumber("1B"));
+        assertFalse(Ex1.isNumber(""));
+        assertFalse(Ex1.isNumber(" "));
+        assertFalse(Ex1.isNumber(null));
+        assertFalse(Ex1.isNumber("1DAb1E"));
+    }
+    @Test
+    void number2intTest() {
+        assertEquals(10,Ex1.number2Int("1010b2"));
+        assertEquals(-1,Ex1.number2Int("123"));
+        assertEquals(420,Ex1.number2Int("1D0bF"));
+        assertEquals(-1 ,Ex1.number2Int("1D BbG"));
+        assertEquals(-1,Ex1.number2Int("12BbA"));
+        assertEquals(-1,Ex1.number2Int("1b2b5"));
+
+    }
 }

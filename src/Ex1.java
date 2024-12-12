@@ -78,11 +78,15 @@ public class Ex1 {
     public static boolean isNumber(String a) {
         boolean ans = true;
         // add your code here
+        if (a == null || a.isEmpty()) {
+            ans = false;
+            return ans;
+        }
         if (!a.contains("b")){
             char[] charnum = a.toCharArray();
             for (int i = 0; i < charnum.length; i++) {
                 if (charnum[i] >= '0' && charnum[i] <= '9') {
-                    return ans;
+                     ans = true;
                 }
                 else return false;
             }
