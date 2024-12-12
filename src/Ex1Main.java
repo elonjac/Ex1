@@ -40,7 +40,7 @@ public class Ex1Main {
                           System.out.println(num1 + " * " + num2 + " = " + basetimes);
 
                           String[] max = {num1, num2,baseplus,basetimes};
-                          System.out.println("Max number over [" + num1 + ", " + num2 + "," + basetimes + "," + basetimes + "] is:" + max[Ex1.maxIndex(max)]);
+                          System.out.println("Max number over [" + num1 + ", " + num2 + "," + baseplus + "," + basetimes + "] is:" + max[Ex1.maxIndex(max)]);
                         }
                         else {
                             System.out.println("ERR: wrong base, should be [2,16], got (" + basestr + ")");

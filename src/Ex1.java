@@ -41,12 +41,15 @@ public class Ex1 {
                 if (eachnumber[i] < charbase[0]) {
                     number   = eachnumber[i] - '0';
                     numstr = numstr + number;
-                } else return ans;
+                }
+                else return ans;
             } else if (eachnumber[i] >= 'A' && eachnumber[i] <= 'G') {
                 if (eachnumber[i] < charbase[0]) {
                     numstr = numstr + eachnumber[i];
-                } else return ans;
+                }
+                else return ans;
             }
+            else return ans;
         }
 
         int base;
