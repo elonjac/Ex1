@@ -113,8 +113,9 @@ public class Ex1Test {
     @Test
     void number2intTest() {
         assertEquals(10,Ex1.number2Int("1010b2"));
-        assertEquals(-1,Ex1.number2Int("123"));
         assertEquals(420,Ex1.number2Int("1D0bF"));
+        
+        assertEquals(-1,Ex1.number2Int("123"));
         assertEquals(-1 ,Ex1.number2Int("1D BbG"));
         assertEquals(-1,Ex1.number2Int("12BbA"));
         assertEquals(-1,Ex1.number2Int("1b2b5"));
